@@ -18,16 +18,18 @@ public class Scores_Chapter10 {
 			con = DriverManager.getConnection(
 					"jdbc:mysql://localhost/challenge_java",
 					"root",
-					"Yorosiku7");
-			System.out.println("データベース接続成功");
+					"Yorosiku7");			
 
 			statement = con.createStatement();
+			System.out.println("データベース接続成功"+ statement.toString());
 			String updateSql = "UPDATE scores SET score_math = 95, score_english = 80 WHERE id = 5;";
 			String orderSql = "SELECT * FROM scores ORDER BY score_math DESC, score_english DESC";
 
-			System.out.println("レコード更新:" + statement.toString());
+			System.out.println("レコード更新を実行します");
 			statement.executeUpdate(updateSql);
 			ResultSet result = statement.executeQuery(orderSql);
+			System.out.println("1件のレコードが更新されました");
+			System.out.println("数学・英語の点数が高い順に並べ替えました");
 
 			while (result.next()) {
 				int id = result.getInt("id");
